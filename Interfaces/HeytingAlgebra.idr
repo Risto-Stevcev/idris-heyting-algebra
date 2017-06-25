@@ -4,6 +4,7 @@ import Control.Algebra.Lattice
 import Interfaces.Verified
 
 %hide Prelude.Monad.join
+%access public export
 
 
 --------------------------------------------------------------------------------
