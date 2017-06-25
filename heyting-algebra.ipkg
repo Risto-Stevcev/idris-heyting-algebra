@@ -1,0 +1,15 @@
+package heyting_algebra
+
+brief = "Interfaces for heyting algebras and verified bounded join and meet semilattices"
+version = 0.1.0
+readme = ./README.md
+license = "MIT"
+author = "Risto Stevcev"
+maintainer = "Risto Stevcev"
+homepage = https://github.com/Risto-Stevcev/idris-heyting-algebra
+sourceloc = https://github.com/Risto-Stevcev/idris-heyting-algebra
+bugtracker = https://github.com/Risto-Stevcev/idris-heyting-algebra/issues
+
+modules = Interfaces.HeytingAlgebra
+
+pkgs = contrib

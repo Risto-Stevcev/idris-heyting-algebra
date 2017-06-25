@@ -1,0 +1,31 @@
+{
+  "name": "idris-heyting-algebra",
+  "authors": [
+    "Risto Stevcev <risto1@gmail.com>"
+  ],
+  "description": "Interfaces for heyting algebras and verified bounded join and meet semilattices",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Risto-Stevcev/idris-heyting-algebra.git"
+  },
+  "main": "./Interfaces/HeytingAlgebra.idr",
+  "keywords": [
+    "idris",
+    "heyting",
+    "algebra",
+    "algebras",
+    "verified",
+    "bounded",
+    "lattice",
+    "lattices"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Risto-Stevcev/idris-heyting-algebra",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
