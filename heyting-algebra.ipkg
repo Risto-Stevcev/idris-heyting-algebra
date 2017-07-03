@@ -1,6 +1,6 @@
 package heyting_algebra
 
-brief = "Interfaces for heyting algebras and verified bounded join and meet semilattices"
+brief = "Interfaces for heyting algebras, verified lattices and distributive lattices, and verified bounded join and meet semilattices"
 version = 0.1.0
 readme = ./README.md
 license = "MIT"

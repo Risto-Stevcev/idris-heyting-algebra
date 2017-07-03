@@ -13,7 +13,10 @@ import Interfaces.Verified
 
 interface (BoundedJoinSemilattice a, BoundedMeetSemilattice a, Ord a) => HeytingAlgebra a where
   not : a -> a
+  not x = x `implies` bottom
+
   implies : a -> a -> a
+  implies x y = (not x) `join` y
 
 
 --------------------------------------------------------------------------------
@@ -26,7 +29,12 @@ interface (VerifiedJoinSemilattice a, BoundedJoinSemilattice a) => VerifiedBound
 interface (VerifiedMeetSemilattice a, BoundedMeetSemilattice a) => VerifiedBoundedMeetSemilattice a where
   boundedMeetSemilatticeIdentity : (x : a) -> meet x Control.Algebra.Lattice.top = x
 
-interface (VerifiedJoinSemilattice a, VerifiedMeetSemilattice a, HeytingAlgebra a) => VerifiedHeytingAlgebra a where
+interface (VerifiedJoinSemilattice a, VerifiedMeetSemilattice a) => VerifiedLattice a where {}
+
+interface Lattice a => VerifiedDistributiveLattice a where
+  meetDistributesOverJoin : (x, y, z : a) -> x `meet` (y `join` z) = (x `meet` y) `join` (x `meet` z)
+
+interface (VerifiedLattice a, VerifiedDistributiveLattice a, HeytingAlgebra a) => VerifiedHeytingAlgebra a where
   total heytingAlgebraPseudoComplement : (x : a) -> HeytingAlgebra.not x = x `implies` Control.Algebra.Lattice.bottom
   total heytingAlgebraRelativePseudoComplement : (x, y, z : a) -> (z `meet` x) <= y = z <= (x `implies` y)
 
@@ -46,6 +54,8 @@ MeetSemilattice Bool where
 
 BoundedMeetSemilattice Bool where
   top = True
+
+Lattice Bool where {}
 
 HeytingAlgebra Bool where
   not = Prelude.Bool.not
@@ -95,6 +105,18 @@ VerifiedMeetSemilattice Bool where
 VerifiedBoundedMeetSemilattice Bool where
   boundedMeetSemilatticeIdentity False = Refl
   boundedMeetSemilatticeIdentity True = Refl
+
+VerifiedLattice Bool where {}
+
+VerifiedDistributiveLattice Bool where
+  meetDistributesOverJoin False False False = Refl
+  meetDistributesOverJoin False False True = Refl
+  meetDistributesOverJoin False True False = Refl
+  meetDistributesOverJoin False True True = Refl
+  meetDistributesOverJoin True False False = Refl
+  meetDistributesOverJoin True False True = Refl
+  meetDistributesOverJoin True True False = Refl
+  meetDistributesOverJoin True True True = Refl
 
 VerifiedHeytingAlgebra Bool where
   heytingAlgebraPseudoComplement False = Refl
