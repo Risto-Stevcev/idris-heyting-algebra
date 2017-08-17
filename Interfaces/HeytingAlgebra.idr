@@ -38,6 +38,9 @@ interface (VerifiedLattice a, VerifiedDistributiveLattice a, HeytingAlgebra a) =
   total heytingAlgebraPseudoComplement : (x : a) -> HeytingAlgebra.not x = x `implies` Control.Algebra.Lattice.bottom
   total heytingAlgebraRelativePseudoComplement : (x, y, z : a) -> (z `meet` x) <= y = z <= (x `implies` y)
 
+interface VerifiedHeytingAlgebra a => VerifiedInvolutiveHeytingAlgebra a where
+  heytingAlgebraInvolution : (x : a) -> HeytingAlgebra.not (HeytingAlgebra.not x) = x
+
 
 --------------------------------------------------------------------------------
 -- Implementations
@@ -129,3 +132,7 @@ VerifiedHeytingAlgebra Bool where
   heytingAlgebraRelativePseudoComplement True False True = Refl
   heytingAlgebraRelativePseudoComplement True True False = Refl
   heytingAlgebraRelativePseudoComplement True True True = Refl
+
+VerifiedInvolutiveHeytingAlgebra Bool where
+  heytingAlgebraInvolution False = Refl
+  heytingAlgebraInvolution True = Refl
