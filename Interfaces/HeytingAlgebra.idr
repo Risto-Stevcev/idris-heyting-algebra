@@ -13,10 +13,7 @@ import Interfaces.Verified
 
 interface (BoundedJoinSemilattice a, BoundedMeetSemilattice a, Ord a) => HeytingAlgebra a where
   not : a -> a
-  not x = x `implies` bottom
-
   implies : a -> a -> a
-  implies x y = (not x) `join` y
 
 
 --------------------------------------------------------------------------------
